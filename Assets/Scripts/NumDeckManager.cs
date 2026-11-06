@@ -1,9 +1,9 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class DeckManager : MonoBehaviour
 {
-    public Texture[] numCardFaces;
-    int[] cardValues = new int[12];
+    public List<DeckCard> deckCards;
 
     void Start()
     {
@@ -14,5 +14,13 @@ public class DeckManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    DeckCard drawDeckCard()
+    {
+        int randomIndex = Random.Range(0, deckCards.Count);
+        DeckCard card = deckCards[randomIndex];
+        deckCards.Remove(card);
+        return deckCards[randomIndex];
     }
 }
