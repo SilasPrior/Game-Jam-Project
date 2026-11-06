@@ -21,6 +21,6 @@ public class DeckManager : MonoBehaviour
         int randomIndex = Random.Range(0, deckCards.Count);
         DeckCard card = deckCards[randomIndex];
         deckCards.Remove(card);
-        return deckCards[randomIndex];
+        return card;
     }
 }
