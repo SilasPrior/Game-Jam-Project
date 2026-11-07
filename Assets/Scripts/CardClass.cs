@@ -1,15 +1,18 @@
 using UnityEngine;
 
+
 public class DeckCard
 {
-    string name;
-    Texture face;
-    int worth;
+    public string Name { get; }
+    public Texture Face { get; }
+    public bool IsAce { get; }
+    public int Value { get; }
 
-    DeckCard(string name, Texture face, int worth)
+    public DeckCard(string name, Texture face, int value, bool isAce = false)
     {
-        this.name = name;
-        this.face = face;
-        this.worth = worth;
+        Name = name;
+        Face = face;
+        IsAce = isAce;
+        Value = isAce ? 11 : value;
     }
 }

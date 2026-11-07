@@ -2,15 +2,28 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public DeckManager deckManager;
+
+    PlayerController player;
+    DealerController dealer;
     void Start()
     {
-        
+        Debug.Log("Game started");
     }
-
-    // Update is called once per frame
-    void Update()
+    public void nextTurn(ISeat who, BlackjackAction action)
     {
+        if (action == BlackjackAction.Hit)
+        {
+            DeckCard card = deckManager.drawDeckCard();
+            who.hand.addCard(card);
+            Debug.Log(who.hand.GetWorth());
+        }
+        else if (action == BlackjackAction.Stand)
+        {
+            who.isStanding = true;
+            Debug.Log("Next turn " + who.hand.GetWorth());
+            who.hand = new Hand();
+        }
         
     }
 }
