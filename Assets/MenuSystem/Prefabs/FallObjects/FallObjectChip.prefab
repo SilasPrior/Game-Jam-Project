@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 471062570322020050}
   - component: {fileID: 440461863270375}
   m_Layer: 0
-  m_Name: FallObject 1
+  m_Name: FallObjectChip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0e1b1b70b3e74d4ca7708909c7a2b8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FallBehaviour
+  Models:
+  - {fileID: 7806976071919247962}
 --- !u!54 &440461863270375
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -90,7 +92,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3958274131676543870
 Transform:
   m_ObjectHideFlags: 0
@@ -101,7 +103,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 1, z: 0.5}
+  m_LocalScale: {x: 1, y: 0.05, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6040475024477720505}
@@ -139,7 +141,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 8718017b1396b274291c22c8e124f702, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
