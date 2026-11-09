@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class DealerController : MonoBehaviour, ISeat
@@ -6,19 +7,25 @@ public class DealerController : MonoBehaviour, ISeat
     public Hand hand { get; set; } = new Hand();
     public bool isStanding { get; set; } = false;
 
-    void dealerDecision()
-    {
-        GameManager gameManager = FindObjectOfType<GameManager>();
+    public event Action<ISeat, BlackjackAction> ActionChosen;
 
+    public Vector3 pos;
+
+    void Start()
+    {
+        hand.Position = pos;
+    }
+    public void dealerDecision()
+    {
         if (hand.GetWorth() < 17)
         {
             Debug.Log("Dealer hits");
-            gameManager.nextTurn(this, BlackjackAction.Hit);
+            ActionChosen?.Invoke(this, BlackjackAction.Hit);
         }
         else
         {
             Debug.Log("Dealer stands");
-            gameManager.nextTurn(this, BlackjackAction.Stand);
+            ActionChosen?.Invoke(this, BlackjackAction.Stand);
         }
     }
 }

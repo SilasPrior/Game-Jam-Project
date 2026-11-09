@@ -1,18 +1,23 @@
 using System.Collections.Generic;
-
+using UnityEngine;
 
 public class Hand 
 {
-    private List<DeckCard> cards = new List<DeckCard>();
+    private List<CardData> cards = new List<CardData>();
 
-    public void addCard(DeckCard card) => cards.Add(card);
+    public Vector3 Position { get; set; }
 
+    public void addCard(CardData card) => cards.Add(card);
+
+    public List<CardData> GetCards() => cards;
+
+    public void ClearHand() => cards.Clear();
     public int GetWorth()
     {
         int total = 0;
         int aces = 0;
 
-        foreach (DeckCard card in cards)
+        foreach (CardData card in cards)
         {
             total += card.Value;          
             if (card.IsAce) aces++;

@@ -1,6 +1,11 @@
+using System;
+using System.Numerics;
+
 public interface ISeat
 {
-    public Hand hand { get; set; } 
-    public bool isStanding { get; set; }
+    Hand hand { get; set; } 
+    bool isStanding { get; set; }
+
+    event Action<ISeat, BlackjackAction> ActionChosen;
 
 }
