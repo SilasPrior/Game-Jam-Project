@@ -12,14 +12,15 @@ public class MenuController : MonoBehaviour
         StartCoroutine(SceneDelay());
     }
 
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
-
     private IEnumerator SceneDelay()
     {
         yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene(playscene);
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
 }
