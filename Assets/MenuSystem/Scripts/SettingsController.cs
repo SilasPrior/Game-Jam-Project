@@ -1,35 +1,46 @@
 using UnityEngine;
+using System.Collections.Generic;
+using TMPro;
 
 public class SettingsController : MonoBehaviour
 {
-    bool FullScreen = false;
-    int[] Res = new int[2] {1920, 1080};
+    [SerializeField] private TMP_Dropdown resolutionDropdown;
+    
+    Resolution[] resolutions;
 
     void Start()
     {
+        resolutions = Screen.resolutions;
 
-        Screen.SetResolution(Res[0], Res[1], FullScreen);
+        resolutionDropdown.ClearOptions();
+
+        List<string> resOptions = new List<string>();
+
+        int currentResolutionIndex = 0;
+        for(int i = 0; i < resolutions.Length; i++)
+        {
+            string option = resolutions[i].width + " x " + resolutions[i].height;
+            resOptions.Add(option);
+
+            if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
+            {
+                currentResolutionIndex = i;
+            }
+        }
+
+        resolutionDropdown.AddOptions(resOptions);
+        resolutionDropdown.value = currentResolutionIndex;
+        resolutionDropdown.RefreshShownValue();
     }
 
-    public void SetFullScreen()
+    public void SetFullScreen(bool isFullScreen)
     {
-        if (FullScreen)
-        {
-            FullScreen = false;
-        }
-        else
-        {
-            FullScreen = true;
-        }
-
-        Screen.SetResolution(Res[0], Res[1], FullScreen);
+        Screen.fullScreen = isFullScreen;
     }
 
-    public void SetRes(int width)
+    public void SetRes(int resolutionIndex)
     {
-        Res[0] = width;
-        //Res[1] = hight;
-
-        Screen.SetResolution(Res[0], Res[1], FullScreen);
+        Resolution resolution = resolutions[resolutionIndex];
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 }
