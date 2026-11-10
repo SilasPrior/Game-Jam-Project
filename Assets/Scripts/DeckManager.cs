@@ -19,7 +19,7 @@ public class DeckManager : MonoBehaviour
         deckCards = Resources.LoadAll<CardData>("Blackjack/Cards").ToList();
     }
 
-    public CardData drawDeckCard(Hand hand)
+    public CardObject drawDeckCard(Hand hand)
     {
         if (deckCards.Count == 0) 
         { 
@@ -27,9 +27,9 @@ public class DeckManager : MonoBehaviour
             restartDeck();
         }
         int randomIndex = Random.Range(0, deckCards.Count);
-        CardData card = deckCards[randomIndex];
-        cardSpawner.createCard(card, hand);
-        deckCards.Remove(card);
+        CardData cardData = deckCards[randomIndex];
+        CardObject card = cardSpawner.createCard(cardData, hand);
+        deckCards.Remove(cardData);
         return card;
     }
 }

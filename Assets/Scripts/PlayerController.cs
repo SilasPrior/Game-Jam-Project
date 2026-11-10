@@ -10,9 +10,12 @@ public class PlayerController : MonoBehaviour, ISeat
 
     public Vector3 pos;
 
+    public string Name;
+
     void Start()
     {
         hand.Position = pos;
+        hand.Name = Name;
 
     }
     public void OnClickHit() 

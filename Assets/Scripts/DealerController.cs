@@ -11,9 +11,12 @@ public class DealerController : MonoBehaviour, ISeat
 
     public Vector3 pos;
 
+    public string Name;
+
     void Start()
     {
         hand.Position = pos;
+        hand.Name = Name;
     }
     public void dealerDecision()
     {

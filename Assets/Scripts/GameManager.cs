@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering.VirtualTexturing;
 
 public class GameManager : MonoBehaviour
 {
@@ -6,6 +7,7 @@ public class GameManager : MonoBehaviour
 
     public PlayerController player;
     public DealerController dealer;
+    public RevolverController revolver;
     void Start()
     {
         Debug.Log("Game started");
@@ -27,7 +29,7 @@ public class GameManager : MonoBehaviour
     {
         if (action == BlackjackAction.Hit)
         {
-            CardData card = deckManager.drawDeckCard(who.hand);
+            CardObject card = deckManager.drawDeckCard(who.hand);
             who.hand.addCard(card);
             Debug.Log($"Next turn. Current {who} Worth: {who.hand.GetWorth()}");
         }
@@ -77,6 +79,9 @@ public class GameManager : MonoBehaviour
     void endRound()
     {
 
+        ISeat winner = null;
+        ISeat looser = null;
+
         int playerWorth = player.hand.GetWorth();
         int dealerWorth = dealer.hand.GetWorth();
 
@@ -85,10 +90,14 @@ public class GameManager : MonoBehaviour
 
         if (playerDifference < dealerDifference) {
             //Player wins
+            winner = player;
+            looser = dealer;
             Debug.Log($"Player Win. Player Worth: {playerWorth}, Dealer Worth: {dealerWorth}");
         }
         else if (playerDifference > dealerDifference)
         {
+            winner = dealer;
+            looser = player;
             //Dealer wins
             Debug.Log($"Dealer Win. Player Worth: {playerWorth}, Dealer Worth: {dealerWorth}");
         }
@@ -97,6 +106,9 @@ public class GameManager : MonoBehaviour
             Debug.Log($"Draw. Player Worth: {playerWorth}, Dealer Worth: {dealerWorth}");
             //Draw
         }
+
+        if (winner != null && looser != null)
+            revolver.PullTriger(looser);
 
         startRound();
     }

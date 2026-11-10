@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class CardObject : MonoBehaviour
 {
@@ -7,7 +6,7 @@ public class CardObject : MonoBehaviour
     public GameObject animation;
     public GameObject model;
 
-    private CardData cardData;
+    public CardData cardData { get; set; }
 
     private bool isFaceUp = false;
 

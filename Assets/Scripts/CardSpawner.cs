@@ -5,7 +5,7 @@ public class CardSpawner : MonoBehaviour
 {
     public GameObject cardPrefab;
 
-    public void createCard(CardData data, Hand hand) { 
+    public CardObject createCard(CardData data, Hand hand) { 
  
         GameObject instance = Instantiate(cardPrefab);
         CardObject card = instance.GetComponent<CardObject>();
@@ -15,6 +15,7 @@ public class CardSpawner : MonoBehaviour
             isFaceUp = true;
         }
         card.Initialize(data, hand, isFaceUp);
+        return card;
     }
 
     // Update is called once per frame
