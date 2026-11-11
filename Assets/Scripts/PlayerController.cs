@@ -20,6 +20,11 @@ public class PlayerController : MonoBehaviour, ISeat
     }
     public void OnClickHit() 
     {
+        if (hand.GetWorth() >= 21)
+        {
+            Debug.Log("Player cannot hit, hand is already 21 or more.");
+            return;
+        }
         ActionChosen?.Invoke(this, BlackjackAction.Hit);
 
     }

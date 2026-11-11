@@ -16,7 +16,7 @@ public class DeckManager : MonoBehaviour
     public void restartDeck()
     {
         deckCards = new List<CardData>();
-        deckCards = Resources.LoadAll<CardData>("Blackjack/Cards").ToList();
+        deckCards = Resources.LoadAll<CardData>("ScriptableObjects/Cards").ToList();
     }
 
     public CardObject drawDeckCard(Hand hand)

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewCard", menuName = "Blackjack/Card")]
+[CreateAssetMenu(fileName = "NewCard", menuName = "Card/Blackjack")]
 public class CardData : ScriptableObject
 {
     [SerializeField] int value;

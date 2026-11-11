@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Rendering.VirtualTexturing;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,10 +7,17 @@ public class GameManager : MonoBehaviour
     public PlayerController player;
     public DealerController dealer;
     public RevolverController revolver;
+
+
+    [SerializeField] private StashClass stash = new StashClass();
+    [SerializeField] private TheHighPriestess hp = new TheHighPriestess();
+
+
     void Start()
     {
         Debug.Log("Game started");
         startRound();
+        stash.AddCard(hp);
     }
     void OnEnable()
     {
