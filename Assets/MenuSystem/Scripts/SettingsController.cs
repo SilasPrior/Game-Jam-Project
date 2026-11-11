@@ -49,21 +49,21 @@ public class SettingsController : MonoBehaviour
 
     public void SetVolMaster(float volume)
     {
-        audioMixer.SetFloat("MasterVol", volume);
+        audioMixer.SetFloat("MasterVol", Mathf.Log10(volume) * 20);
     }
 
     public void SetVolMusic(float volume)
     {
-        audioMixer.SetFloat("MusicVol", volume);
+        audioMixer.SetFloat("MusicVol", Mathf.Log10(volume) * 20);
     }
 
     public void SetVolSFX(float volume)
     {
-        audioMixer.SetFloat("SFXVol", volume);
+        audioMixer.SetFloat("SFXVol", Mathf.Log10(volume) * 20);
     }
 
     public void SetVolDialogue(float volume)
     {
-        audioMixer.SetFloat("DialogueVol", volume);
+        audioMixer.SetFloat("DialogueVol", Mathf.Log10(volume) * 20);
     }
 }
