@@ -5,7 +5,7 @@ public class SpawnFallers : MonoBehaviour
     public GameObject[] Faller;
     int wait = 0;
 
-    void Update()
+    void FixedUpdate()
     {
 
         if(wait <= 0)

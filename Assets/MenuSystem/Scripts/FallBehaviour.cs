@@ -14,7 +14,7 @@ public class FallBehaviour : MonoBehaviour
         Models[Random.Range(0, Models.Length)].SetActive(true);
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if(gameObject.transform.position.y < 0)
         {

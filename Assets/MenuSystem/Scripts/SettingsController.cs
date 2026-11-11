@@ -1,10 +1,13 @@
 using UnityEngine;
+using UnityEngine.Audio;
 using System.Collections.Generic;
 using TMPro;
 
 public class SettingsController : MonoBehaviour
 {
     [SerializeField] private TMP_Dropdown resolutionDropdown;
+
+    public AudioMixer audioMixer;
     
     Resolution[] resolutions;
 
@@ -42,5 +45,25 @@ public class SettingsController : MonoBehaviour
     {
         Resolution resolution = resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+    }
+
+    public void SetVolMaster(float volume)
+    {
+        audioMixer.SetFloat("MasterVol", volume);
+    }
+
+    public void SetVolMusic(float volume)
+    {
+        audioMixer.SetFloat("MusicVol", volume);
+    }
+
+    public void SetVolSFX(float volume)
+    {
+        audioMixer.SetFloat("SFXVol", volume);
+    }
+
+    public void SetVolDialogue(float volume)
+    {
+        audioMixer.SetFloat("DialogueVol", volume);
     }
 }
