@@ -1,3 +1,4 @@
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -91,26 +92,43 @@ public class GameManager : MonoBehaviour
         int playerWorth = player.hand.GetWorth();
         int dealerWorth = dealer.hand.GetWorth();
 
-        int playerDifference = Mathf.Abs(playerWorth - 21);
-        int dealerDifference = Mathf.Abs(dealerWorth - 21);
-
-        if (playerDifference < dealerDifference) {
-            //Player wins
+        if (playerWorth <= 21 && dealerWorth > 21)
+        {
+            //Dealer bust
             winner = player;
             looser = dealer;
-            Debug.Log($"Player Win. Player Worth: {playerWorth}, Dealer Worth: {dealerWorth}");
+            Debug.Log($"Dealer Bust, Player Win. Player Worth: {playerWorth}, Dealer Worth: {dealerWorth}");
         }
-        else if (playerDifference > dealerDifference)
+        else if (playerWorth > 21 && dealerWorth <= 21)
         {
             winner = dealer;
             looser = player;
-            //Dealer wins
-            Debug.Log($"Dealer Win. Player Worth: {playerWorth}, Dealer Worth: {dealerWorth}");
+            //Player bust
+            Debug.Log($"Player Bust, Dealer Win. Player Worth: {playerWorth}, Dealer Worth: {dealerWorth}");
         }
         else
         {
-            Debug.Log($"Draw. Player Worth: {playerWorth}, Dealer Worth: {dealerWorth}");
-            //Draw
+            int playerDifference = Mathf.Abs(playerWorth - 21);
+            int dealerDifference = Mathf.Abs(dealerWorth - 21);
+
+            if (playerDifference < dealerDifference) {
+                //Player wins
+                winner = player;
+                looser = dealer;
+                Debug.Log($"Player Win. Player Worth: {playerWorth}, Dealer Worth: {dealerWorth}");
+            }
+            else if (playerDifference > dealerDifference)
+            {
+                winner = dealer;
+                looser = player;
+                //Dealer wins
+                Debug.Log($"Dealer Win. Player Worth: {playerWorth}, Dealer Worth: {dealerWorth}");
+            }
+            else
+            {
+                Debug.Log($"Draw. Player Worth: {playerWorth}, Dealer Worth: {dealerWorth}");
+                //Draw
+            }
         }
 
         if (winner != null && looser != null)
